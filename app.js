@@ -10,6 +10,11 @@ app.use(cors())
 
 app.use(express.json())
 
+app.use((req, res, next) => {
+    res.removeHeader("Content-Security-Policy");
+    next();
+});
+
 app.use('/ai', aiRoutes)
 
 app.get('/', (req, res) => {
