@@ -12,10 +12,9 @@ app.use(express.json())
 
 app.use('/ai', aiRoutes)
 
-app.get('/', (req, res) => {
-  app.use(express.static(path.resolve(__dirname, '../frontend/dist')))
-  res.sendFile(path.resolve(__dirname, '../frontend/dist', 'index.html'))
-})
+app.use(express.static(path.resolve(__dirname, '../frontend/dist')));
 
-app.use('*', (req, res) => res.status(404).json({ msg: 'Not found' }));
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../frontend/dist', 'index.html'));
+});
 module.exports = app
